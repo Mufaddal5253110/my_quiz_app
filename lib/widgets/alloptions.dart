@@ -9,7 +9,6 @@ import 'option.dart';
 class AllOptionsCard extends StatelessWidget {
   const AllOptionsCard({
     Key key,
-    // it means we have to pass this
     @required this.question,
   }) : super(key: key);
 
@@ -21,19 +20,8 @@ class AllOptionsCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
       padding: EdgeInsets.all(kDefaultPadding),
-      // decoration: BoxDecoration(
-      //   color: Colors.white,
-      //   borderRadius: BorderRadius.circular(25),
-      // ),
       child: Column(
         children: [
-          // Text(
-          //   question.question,
-          //   // style: Theme.of(context)
-          //   //     .textTheme
-          //   //     .headline6
-          //   //     .copyWith(color: kBlackColor),
-          // ),
           SizedBox(height: kDefaultPadding / 2),
           ...List.generate(
             question.options.length,

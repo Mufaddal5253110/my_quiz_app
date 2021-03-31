@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
 import 'package:my_quiz_app/controllers/question_controller.dart';
-import 'package:my_quiz_app/screens/home_page_screen.dart';
 
 class ScoreScreen extends StatelessWidget {
   String getCompletionPoint(int quelength, int skippedquelen) {
@@ -29,7 +28,6 @@ class ScoreScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // WebsafeSvg.asset("assets/icons/bg.svg", fit: BoxFit.fill),
           ClipPath(
             clipper: OvalBottomBorderClipper(),
             child: Container(

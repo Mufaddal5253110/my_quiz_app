@@ -117,11 +117,6 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 10),
-                        // Text(
-                        //   "How many Students in your class __ from India",
-                        //   maxLines: 3,
-                        //   textAlign: TextAlign.center,
-                        // )
                         Expanded(
                           child: PageView.builder(
                             // Block swipe to next qn
@@ -140,7 +135,6 @@ class HomePage extends StatelessWidget {
               ),
               Expanded(
                 child: PageView.builder(
-                  // Block swipe to next qn
                   physics: NeverScrollableScrollPhysics(),
                   controller: _optionsController.optionspageController,
                   onPageChanged: _optionsController.updateTheQnNum,

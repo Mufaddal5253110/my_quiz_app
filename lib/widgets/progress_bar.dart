@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:my_quiz_app/constants.dart';
 import 'package:my_quiz_app/controllers/question_controller.dart';
-// import 'package:websafe_svg/websafe_svg.dart';
 
 class ProgressBar extends StatelessWidget {
   const ProgressBar({
@@ -23,11 +22,9 @@ class ProgressBar extends StatelessWidget {
         builder: (controller) {
           return Stack(
             children: [
-              // LayoutBuilder provide us the available space for the conatiner
-              // constraints.maxWidth needed for our animation
               LayoutBuilder(
                 builder: (context, constraints) => Container(
-                  // from 0 to 1 it takes 60s
+                  // from 0 to 1 it takes 20s
                   width: constraints.maxWidth * controller.animation.value,
                   decoration: BoxDecoration(
                     gradient: kPrimaryGradient,
@@ -49,7 +46,6 @@ class ProgressBar extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      // WebsafeSvg.asset("assets/icons/clock.svg"),
                     ],
                   ),
                 ),

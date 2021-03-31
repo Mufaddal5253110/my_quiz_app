@@ -3,9 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:my_quiz_app/models/Questions.dart';
 import 'package:my_quiz_app/screens/score_screen.dart';
-// import 'package:quiz_app/screens/score/score_screen.dart';
-
-// We use get package for our state management
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
@@ -44,7 +41,6 @@ class QuestionController extends GetxController
   int _selectedAns = 0;
   int get selectedAns => this._selectedAns;
 
-  // for more about obs please check documentation
   RxInt _questionNumber = 1.obs;
   RxInt get questionNumber => this._questionNumber;
 
@@ -54,27 +50,19 @@ class QuestionController extends GetxController
   RxInt _numOfWrongAns = 0.obs;
   RxInt get numOfWrongAns => this._numOfWrongAns;
 
-  // int _numOfCorrectAns = 0;
-  // int get numOfCorrectAns => this._numOfCorrectAns;
-
-  // int _numOfWrongAns = 0;
-  // int get numOfWrongAns => this._numOfWrongAns;
-
-  // called immediately after the widget is allocated memory
   @override
   void onInit() {
-    // Our animation duration is 60 s
-    // so our plan is to fill the progress bar within 60s
+    // Our animation duration is 20 s
+    // so our plan is to fill the progress bar within 20s
     _animationController =
         AnimationController(duration: Duration(seconds: 20), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
       ..addListener(() {
-        // update like setState
         update();
       });
 
     // start our animation
-    // Once 60s is completed go to the next qn
+    // Once 20s is completed go to the next qn
 
     _animationController.forward().whenComplete(nextQuestion);
     _pageController = PageController();
@@ -129,8 +117,6 @@ class QuestionController extends GetxController
       // Once timer is finish go to the next qn
       _animationController.forward().whenComplete(nextQuestion);
     } else {
-      // Get package provide us simple way to naviigate another page
-      // Get.to(ScoreScreen());
       Get.to(() => ScoreScreen());
     }
   }
