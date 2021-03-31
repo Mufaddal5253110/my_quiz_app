@@ -3,8 +3,15 @@ class Question {
   final String question;
   final List<String> options;
 
-  Question({this.id, this.question, this.answer, this.options});
+  Question({
+    this.id,
+    this.question,
+    this.answer,
+    this.options,
+  });
 }
+
+// List sample_data = [];
 
 const List sample_data = [
   {
@@ -17,7 +24,7 @@ const List sample_data = [
   {
     "id": 2,
     "question": "When google release Flutter.",
-    "options": ['Jun 2017', 'Jun 2017', 'May 2017', 'May 2018'],
+    "options": ['Jun 2017', 'July 2017', 'May 2017', 'May 2018'],
     "answer_index": 2,
   },
   {

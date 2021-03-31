@@ -97,7 +97,8 @@ class ScoreScreen extends StatelessWidget {
                     padding: EdgeInsets.all(12.0),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      mainAxisExtent: 70.0,
+                      mainAxisExtent: 55.0,
+                      crossAxisSpacing: 20,
                     ),
                     children: [
                       pointinfo(

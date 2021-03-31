@@ -1,16 +1,81 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:my_quiz_app/constants.dart';
 import 'package:my_quiz_app/controllers/question_controller.dart';
 import 'package:get/get.dart';
+import 'package:my_quiz_app/models/Questions.dart';
 import 'package:my_quiz_app/widgets/alloptions.dart';
 import 'package:my_quiz_app/widgets/progress_bar.dart';
 import 'package:my_quiz_app/widgets/question_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   // So that we have acccess our controller
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   QuestionController _questionController = Get.put(QuestionController());
+
   QuestionController _optionsController = Get.put(QuestionController());
+
+  // Future loadQue() async {
+  //   QuerySnapshot qShot =
+  //       await FirebaseFirestore.instance.collection('data').orderBy('id').get();
+  //   print(qShot);
+  //   print(qShot.docs);
+  //   sample_data = qShot.docs
+  //       .map((doc) => {
+  //                 "id": doc.data()["id"],
+  //                 "question": doc.data()["question"],
+  //                 "options": doc.data()["options"],
+  //                 "answer_index": doc.data()["answer_index"],
+  //               }
+  //           // Question(
+  //           //   id: doc.data()["id"],
+  //           //   answer: doc.data()["answer_index"],
+  //           //   options: doc.data()["options"],
+  //           //   question: doc.data()["question"],
+  //           // ),
+  //           )
+  //       .toList();
+  //   // Stream<QuerySnapshot> stream =
+  //   //   FirebaseFirestore.instance.collection('data').orderBy('id').snapshots();
+
+  //   // sample_data = stream.map(
+  //   //   (qShot) => qShot.docs.map(
+  //   //     (doc) =>Question(
+  //   //           id: doc.data()["id"],
+  //   //           answer: doc.data()["answer_index"],
+  //   //           options: doc.data()["options"],
+  //   //           question: doc.data()["question"],
+  //   //         )
+  //   //   ).toList();
+  //   // final _list = snapshots;
+  //   //       print(_list);
+  //   //       if (_list.length != 0) {
+  //   //         for (int i = 0; i < _list.length; i++) {
+  //   //           Question questions = Question(
+  //   //             id: _list[i].data()["id"],
+  //   //             answer: _list[i].data()["answer_index"],
+  //   //             options: _list[i].data()["options"],
+  //   //             question: _list[i].data()["question"],
+  //   //           );
+  //   //           sample_data.add(questions);
+  //   //           print(sample_data);
+  //   //         }
+  //   //       }
+  // }
+
+  // @override
+  // void initState() {
+  //   // Stream<QuerySnapshot> snapshots =
+
+  //   super.initState();
+  //   // _questionController.loadQuestions();
+  // }
+
   @override
   Widget build(BuildContext context) {
     final mqh = MediaQuery.of(context).size.height;
@@ -128,7 +193,10 @@ class HomePage extends StatelessWidget {
                             physics: NeverScrollableScrollPhysics(),
                             controller: _questionController.pageController,
                             onPageChanged: _questionController.updateTheQnNum,
-                            itemCount: _questionController.questions.length,
+                            itemCount:
+                                _questionController.questions == null
+                                    ? 0
+                                    : _questionController.questions.length,
                             itemBuilder: (context, index) => QuestionCard(
                                 question: _questionController.questions[index]),
                           ),
@@ -144,7 +212,9 @@ class HomePage extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   controller: _optionsController.optionspageController,
                   onPageChanged: _optionsController.updateTheQnNum,
-                  itemCount: _optionsController.questions.length,
+                  itemCount: _optionsController.questions == null
+                      ? 0
+                      : _optionsController.questions.length,
                   itemBuilder: (context, index) => AllOptionsCard(
                       question: _optionsController.questions[index]),
                 ),

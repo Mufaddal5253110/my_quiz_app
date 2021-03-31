@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -16,10 +17,36 @@ class QuestionController extends GetxController
   // so that we can access our animation outside
   Animation get animation => this._animation;
 
+  // List<Question> _questions;
+
   PageController _pageController;
   PageController get pageController => this._pageController;
   PageController _optionspageController;
   PageController get optionspageController => this._optionspageController;
+
+  // Future loadQuestions() async {
+  //   QuerySnapshot qShot =
+  //       await FirebaseFirestore.instance.collection('data').orderBy('id').get();
+  //   print(qShot);
+  //   print(qShot.docs);
+  //   _questions = qShot.docs
+  //       .map(
+  //         (doc) => Question(
+  //           id: doc.data()["id"],
+  //           answer: doc.data()["answer_index"],
+  //           options: doc.data()["options"],
+  //           question: doc.data()["question"],
+  //         ),
+  //       )
+  //       .toList();
+  //   FirebaseFirestore.instance
+  //       .collection('data')
+  //       .orderBy('id')
+  //       .snapshots()
+  //       .listen((event) {
+  //         event.d
+  //       });
+  // }
 
   List<Question> _questions = sample_data
       .map(
