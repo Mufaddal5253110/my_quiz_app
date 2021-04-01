@@ -1,12 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:my_quiz_app/models/Questions.dart';
 import 'package:my_quiz_app/screens/score_screen.dart';
-// import 'package:quiz_app/screens/score/score_screen.dart';
-
-// We use get package for our state management
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
@@ -17,46 +13,14 @@ class QuestionController extends GetxController
   // so that we can access our animation outside
   Animation get animation => this._animation;
 
-  // List<Question> _questions;
+  List<Question> _questions = [];
 
   PageController _pageController;
   PageController get pageController => this._pageController;
   PageController _optionspageController;
   PageController get optionspageController => this._optionspageController;
 
-  // Future loadQuestions() async {
-  //   QuerySnapshot qShot =
-  //       await FirebaseFirestore.instance.collection('data').orderBy('id').get();
-  //   print(qShot);
-  //   print(qShot.docs);
-  //   _questions = qShot.docs
-  //       .map(
-  //         (doc) => Question(
-  //           id: doc.data()["id"],
-  //           answer: doc.data()["answer_index"],
-  //           options: doc.data()["options"],
-  //           question: doc.data()["question"],
-  //         ),
-  //       )
-  //       .toList();
-  //   FirebaseFirestore.instance
-  //       .collection('data')
-  //       .orderBy('id')
-  //       .snapshots()
-  //       .listen((event) {
-  //         event.d
-  //       });
-  // }
-
-  List<Question> _questions = sample_data
-      .map(
-        (question) => Question(
-            id: question['id'],
-            question: question['question'],
-            options: question['options'],
-            answer: question['answer_index']),
-      )
-      .toList();
+  void setQuestions(List<Question> questions) => _questions = questions;
   List<Question> get questions => this._questions;
 
   bool _isAnswered = false;
@@ -81,17 +45,11 @@ class QuestionController extends GetxController
   RxInt _numOfWrongAns = 0.obs;
   RxInt get numOfWrongAns => this._numOfWrongAns;
 
-  // int _numOfCorrectAns = 0;
-  // int get numOfCorrectAns => this._numOfCorrectAns;
-
-  // int _numOfWrongAns = 0;
-  // int get numOfWrongAns => this._numOfWrongAns;
-
   // called immediately after the widget is allocated memory
   @override
   void onInit() {
-    // Our animation duration is 60 s
-    // so our plan is to fill the progress bar within 60s
+    // Our animation duration is 20 s
+    // so our plan is to fill the progress bar within 20s
     _animationController =
         AnimationController(duration: Duration(seconds: 20), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
@@ -101,15 +59,16 @@ class QuestionController extends GetxController
       });
 
     // start our animation
-    // Once 60s is completed go to the next qn
+    // Once 20s is completed go to the next qn
 
     _animationController.forward().whenComplete(nextQuestion);
+
     _pageController = PageController();
     _optionspageController = PageController();
     super.onInit();
   }
 
-  // // called just before the Controller is deleted from memory
+  // called just before the Controller is deleted from memory
   @override
   void onClose() {
     super.onClose();

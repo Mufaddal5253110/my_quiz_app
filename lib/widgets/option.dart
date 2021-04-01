@@ -39,7 +39,6 @@ class Option extends StatelessWidget {
             onTap: press,
             child: Container(
               height: 50,
-              // width: 20,
               margin: EdgeInsets.only(top: kDefaultPadding),
               padding: EdgeInsets.all(kDefaultPadding),
               decoration: BoxDecoration(
@@ -54,8 +53,8 @@ class Option extends StatelessWidget {
                     style: TextStyle(color: getTheRightColor()),
                   ),
                   Container(
-                    height: 15,
-                    width: 15,
+                    height: 20,
+                    width: 20,
                     decoration: BoxDecoration(
                       color: getTheRightColor() == kGrayColor
                           ? Colors.transparent
